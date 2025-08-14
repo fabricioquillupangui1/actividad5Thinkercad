@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <style>
+ table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 0.8rem;
+      text-align: center;
+    }
+    th {
+      background-color: #34495e;
+      color: white;
+    }
+
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica arduino,lcd y teclado 4x4</title>
+</head>
+<body>
+    <a href="index.html">visitar primer deber</a><br>
+<a href="segundoDeber.html">visitar segundo deber</a><br>
+    <a href="tercerDeber.html">visitar tercer deber</a><br>
+     <a href="actividad1Thinkercad.html">visitar Acividad 1</a><br>
+     <a href="actividad2Thinkercad.html">visitar Acividad 2</a><br>
+     <a href="actividad3Thinkercad.html">visitar Acividad 3</a><br>
+     <a href="actividad3Thinkercad.html">visitar Acividad 4</a><br>
+
+    <h2 align="center">ARDUINO</h2>
+
+    <h2 align="center">TÍTULO DE LA PRÁCTICA<br>
+"Utilización de teclado 4x4, pantalla lcd "</h2>
+ <p>Crea un sistema de inicio de sesión, si la contraseña es correcta mostrar en el lcd CORRECTO y encender un led, si es incorrecto encender una alarma y mostrar INCORRECTO en el lcd</p>
+<h2>Introducción</h2>
+<p>El desarrollo de sistemas de control de acceso es fundamental en la seguridad de dispositivos electrónicos. El uso de un teclado matricial 4x4 permite ingresar contraseñas de manera rápida y precisa. La pantalla LCD ofrece retroalimentación visual inmediata al usuario, mostrando mensajes claros según la validez de la contraseña. Además, la combinación de indicadores como LEDs y buzzer proporciona alertas visuales y sonoras que mejoran la interacción y seguridad. Este proyecto integra hardware y software, fomentando la comprensión de la programación de microcontroladores y el manejo de periféricos. Con ello, se logra un sistema confiable y educativo para prácticas de electrónica y programación.</p>
+ <div class="section">
+        <h2>Objetivo General</h2>
+        <p>Desarrollar un sistema de control de acceso utilizando un teclado matricial y una pantalla LCD, que permita validar la contraseña ingresada y mostrar mensajes visuales y sonoros según el resultado.</p>
+    </div>
+
+    <div class="section">
+        <h2>Objetivos Específicos</h2>
+        <ul>
+            <li>Configurar correctamente la pantalla LCD para mostrar mensajes de forma clara y centrada.</li>
+            <li>Implementar la lectura del teclado matricial para capturar la contraseña ingresada por el usuario.</li>
+            <li>Validar la contraseña y generar respuestas visuales (LED) y sonoras (buzzer) según sea correcta o incorrecta.</li>
+            <li>Mostrar mensajes de bienvenida personalizados en el LCD cuando el usuario ingresa la contraseña correcta.</li>
+        </ul>
+    </div>
+<h3>MARCO TEÓRICO</h3>
+<p><strong>Conceptos importantes</strong></p>
+<ul>
+  <li><strong>Arduino:</strong>  Plataforma de hardware libre basada en una placa con un microcontrolador, usada para crear proyectos electrónicos.   </li>
+  <li><strong>Led:</strong>   Dispositivo emisores de luz que se encienden al recibir corriente eléctrica en una dirección específica.  </li>
+  <li><strong>Resistencias:</strong> Componentes que limitan el paso de corriente eléctrica, protegiendo otros elementos del circuito como los LEDs.  </li>
+  <li><strong>Cables de conexión:</strong>   Conductores utilizados para unir componentes electrónicos y permitir el flujo de corriente en el circuito.  </li>
+<li><strong>Buzzer:</strong>  Dispositivo electrónico que emite un sonido cuando recibe corriente eléctrica, usado para alarmas o alertas sonoras en proyectos electrónicos.  </li>
+<li><strong>Teclado 4x4:</strong>   Un teclado 4x4 es un dispositivo de entrada electrónico compuesto por 4 filas y 4 columnas, formando un total de 16 teclas. Se utiliza comúnmente en proyectos con microcontroladores (como Arduino) para ingresar números, letras o comandos. Cada tecla conecta una fila con una columna, lo que permite al microcontrolador detectar qué tecla ha sido presionada mediante un escaneo de filas y columnas.. </li>
+<li><strong>Pantalla LCD:</strong>  es un módulo de visualización de texto muy utilizado en proyectos con Arduino. El número "16x2" indica que puede mostrar 16 caracteres por línea en 2 líneas. Este tipo de pantalla es ideal para mostrar datos como temperaturas, distancias, mensajes, menús, entre otros </li>
+</ul>
+<img src="https://i0.wp.com/www.circuitbasics.com/wp-content/uploads/2017/04/How-to-Set-Up-a-Keypad-on-an-Arduino-I2C-LCD-Output-Wiring-Diagram.png" width="800">
+
+<h3>Tabla explicativa de ventajas y desventajas de usar este sistema de inicio de sesión</h3>
+
+    <table>
+        <tr>
+            <th>Ventajas</th>
+            <th>Desventajas</th>
+        </tr>
+        <tr>
+            <td>Permite un control de acceso seguro mediante contraseña.</td>
+            <td>Depende de la memoria del usuario; olvidar la clave bloquea el acceso.</td>
+        </tr>
+        <tr>
+            <td>El teclado 4x4 es compacto y fácil de integrar en proyectos electrónicos.</td>
+            <td>El sistema puede ser vulnerable si no se implementa un cifrado o protección adicional.</td>
+        </tr>
+        <tr>
+            <td>La pantalla LCD proporciona retroalimentación inmediata al usuario.</td>
+            <td>Requiere conocimientos de programación y manejo de periféricos para su correcto funcionamiento.</td>
+        </tr>
+        <tr>
+            <td>La combinación de LED y buzzer mejora la interacción y seguridad.</td>
+            <td>Puede aumentar el consumo de energía si se deja activo constantemente.</td>
+        </tr>
+    </table>
+
+<div class="materiales">
+        <h2>🔧 MATERIALES Y EQUIPO - Práctica de Arduino</h2>
+        <ul>
+ <li>1 Placa Arduino UNO</li>
+<li>1 Sensor ultrasónico HC-SR04</li>
+<li>1 LED (foco indicador)</li>
+<li>1 Resistencia de 220 ohm para el LED</li>
+<li>1 Resistencia de 1 Kohm para el LED</li>
+<li>1 Buzzer activo</li>
+<li>1 Protoboard (placa de pruebas)</li>
+<li>Cables de conexión tipo macho-macho</li>
+<li>Cable USB para conectar Arduino al computador</li>
+<li>Computador con plataforma Tinkercad o Arduino IDE</li>
+<li>Pantalla LCD 16x2</li>
+<li>Teclado 4x4</li>
+
+</ul>
+    </div>
+  <h3>PROCEDIMIENTO</h3>
+ <h1>Código usado en la práctica </h1>
+<p>
+    <table border="1">
+#include LiquidCrystal.h  // Librería para controlar pantalla LCD<br>
+#include Keypad.h         // Librería para leer teclado matricial<br>
+<br>
+// --- CONFIGURACIÓN DEL LCD ---<br>
+LiquidCrystal lcd(7, 6, 5, 4, 3, 2); // RS, E, D4, D5, D6, D7<br>
+<br>
+// --- CONFIGURACIÓN DEL TECLADO ---<br>
+const byte FILAS = 4;<br>
+const byte COLUMNAS = 4;<br>
+<br>
+// Mapeo de teclas<br>
+char teclas[FILAS][COLUMNAS] = {<br>
+  {'1','2','3','A'},<br>
+  {'4','5','6','B'},<br>
+  {'7','8','9','C'},<br>
+  {'*','0','#','D'}<br>
+};<br>
+<br>
+byte pinesFilas[FILAS] = {A0, A1, 13, 12};<br>
+byte pinesColumnas[COLUMNAS] = {11, 10, 9, 8};<br>
+<br>
+Keypad teclado = Keypad(makeKeymap(teclas), pinesFilas, pinesColumnas, FILAS, COLUMNAS);<br>
+<br>
+// --- VARIABLES PARA CONTRASEÑA ---<br>
+char password[4] = "193"; // Contraseña correcta<br>
+char caracteres[4];       // Lo que ingresa el usuario<br>
+byte indice = 0;          // Posición actual<br>
+<br>
+// --- PINES PARA LED Y ALARMA ---<br>
+const int ledVerde = A2;  <br>
+const int buzzer = A3;<br>    
+<br>
+void setup() {<br>
+  lcd.begin(16, 2);<br>
+  lcd.clear();<br>
+  lcd.setCursor(0, 0);<br>
+  lcd.print("Ingrese clave:");<br>
+  <br>
+  pinMode(ledVerde, OUTPUT);<br>
+  pinMode(buzzer, OUTPUT);<br>
+  <br>
+  digitalWrite(ledVerde, LOW);<br>
+  digitalWrite(buzzer, LOW);<br>
+}<br>
+<br>
+void loop() {<br>
+  char tecla = teclado.getKey();<br>
+<br>
+  if (tecla) {<br>
+    lcd.setCursor(indice, 1);<br>
+    lcd.print('*'); <br>
+    caracteres[indice] = tecla;<br>
+    indice++;<br>
+    <br>
+    if (indice == 3) { // Cuando ya ingresó los 3 dígitos<br>
+      caracteres[3] = '\0';<br>
+      <br>
+      if (!strcmp(password, caracteres)) {<br>
+        lcd.clear();<br>
+        lcd.setCursor(0, 0);<br>
+        lcd.print("CORRECTO");<br>
+        digitalWrite(ledVerde, HIGH);<br>
+        digitalWrite(buzzer, LOW);<br>
+        delay(2000);<br>
+<br>
+        // Mensaje de bienvenida<br>
+        lcd.clear();<br>
+        lcd.setCursor(3, 0); // Centrado (16 columnas - 9 letras) / 2 = 3<br>
+        lcd.print("BIENVENIDO");<br>
+        delay(3000);<br>
+<br>
+        // Mostrar nombre centrado<br>
+        lcd.clear();<br>
+        lcd.setCursor((16 - strlen("FABRICIO")) / 2, 0);<br>
+        lcd.print("FABRICIO");<br>
+        lcd.setCursor((16 - strlen("QUILLUPANGUI")) / 2, 1);<br>
+        lcd.print("QUILLUPANGUI");<br>
+        delay(3000);<br>
+<br>
+      } else {<br>
+        lcd.clear();<br>
+        lcd.setCursor(0, 0);<br>
+        lcd.print("INCORRECTO");<br>
+        digitalWrite(ledVerde, LOW);<br>
+        digitalWrite(buzzer, HIGH);<br>
+        delay(2000);<br>
+        digitalWrite(buzzer, LOW);<br>
+      }<br>
+<br>
+      // Reinicio para nueva clave<br>
+      lcd.clear();<br>
+      lcd.setCursor(0, 0);<br>
+      lcd.print("Ingrese clave:");<br>
+      indice = 0;<br>
+      memset(caracteres, 0, sizeof(caracteres));<br>
+      digitalWrite(ledVerde, LOW);<br>
+    }<br>
+  }<br>
+}<br>
+
+</table>
+
+</p>
+<h3>ANÁLISIS Y DISCUSIÓN</h3>
+  <h1>Preguntas y Respuestas - Práctica: Inicio de sesión</h1>
+
+    <div class="pregunta">
+        <h3>1. ¿Qué es un teclado 4x4?</h3>
+        <div class="respuesta">
+            Es un dispositivo de entrada con 4 filas y 4 columnas, formando 16 teclas, que permite ingresar datos numéricos o comandos a un microcontrolador.
+        </div>
+    </div>
+
+    <div class="pregunta">
+        <h3>2. ¿Para qué se utiliza la pantalla LCD en este sistema?</h3>
+        <div class="respuesta">
+            Se utiliza para mostrar mensajes al usuario, como "CORRECTO", "INCORRECTO", "BIENVENIDO" y el nombre del usuario, proporcionando retroalimentación visual.
+        </div>
+    </div>
+
+    <div class="pregunta">
+        <h3>3. ¿Qué función cumple el LED en el sistema?</h3>
+        <div class="respuesta">
+            Indica visualmente que la contraseña ingresada es correcta, encendiéndose cuando el acceso es autorizado.
+        </div>
+    </div>
+
+    <div class="pregunta">
+        <h3>4. ¿Qué función cumple el buzzer en el sistema?</h3>
+        <div class="respuesta">
+            Actúa como alarma sonora, encendiéndose cuando la contraseña ingresada es incorrecta para alertar al usuario.
+        </div>
+    </div>
+
+    <div class="pregunta">
+        <h3>5. ¿Cómo se compara la contraseña ingresada con la correcta?</h3>
+        <div class="respuesta">
+            Se utiliza la función strcmp() en C/C++ para comparar los caracteres ingresados con la contraseña almacenada en memoria.
+        </div>
+    </div>
+
+    <div class="pregunta">
+        <h3>6. ¿Por qué se usan asteriscos al ingresar la contraseña?</h3>
+        <div class="respuesta">
+            Para ocultar los números reales de la contraseña y proteger la información mientras el usuario la ingresa.
+        </div>
+    </div>
+
+    <div class="pregunta">
+        <h3>7. ¿Qué ocurre si la contraseña es correcta?</h3>
+        <div class="respuesta">
+            Se muestra "CORRECTO", se enciende el LED verde, luego aparece "BIENVENIDO" y finalmente el nombre del usuario en la pantalla LCD.
+        </div>
+    </div>
+
+    <div class="pregunta">
+        <h3>8. ¿Qué ocurre si la contraseña es incorrecta?</h3>
+        <div class="respuesta">
+            Se muestra "INCORRECTO" en el LCD, el buzzer se activa durante 2 segundos y el LED verde permanece apagado.
+        </div>
+    </div>
+
+    <div class="pregunta">
+        <h3>9. ¿Por qué se reinicia el índice y el buffer después de cada intento?</h3>
+        <div class="respuesta">
+            Para preparar el sistema para un nuevo ingreso de contraseña, evitando que los caracteres previos interfieran en la siguiente entrada.
+        </div>
+    </div>
+
+    <div class="pregunta">
+        <h3>10. ¿Cuál es la importancia de centrar los mensajes en la pantalla LCD?</h3>
+        <div class="respuesta">
+            Mejora la presentación visual, hace que los mensajes sean más legibles y profesionales, y facilita la interacción del usuario con el sistema.
+        </div>
+    </div>
+
+    <div class="seccion">
+        <h2> Conclusiones de la Práctica</h2>
+     <div class="conclusion">
+        <strong>1.</strong> La integración entre sensores, pantallas y actuadores permite desarrollar sistemas interactivos y funcionales que responden a condiciones del entorno en tiempo real.
+    </div>
+
+    <div class="conclusion">
+        <strong>2.</strong> El uso de la pantalla LCD 16x2 facilita la visualización clara de datos medidos, mejorando la comunicación entre el sistema y el usuario.
+    </div>
+
+    <div class="conclusion">
+        <strong>3.</strong> Aplicar condiciones como activar un LED o un buzzer según la distancia detectada refuerza el aprendizaje de estructuras condicionales en programación.
+    </div>
+
+    <div class="conclusion">
+        <strong>4.</strong> Esta práctica fortalece las habilidades en electrónica básica, lógica de control y programación, permitiendo construir proyectos más complejos en el futuro.
+    </div>
+    </div>
+<h3>ANEXOS</h3>
+    <h2><strong> Capturas de pantalla del simulador</strong> </h2>
+    <h3>Comprobación de inicio de sesión de un usuario/h3>
+<div class="contenedor-imagenes">
+        <figure>
+            <img src="https://i.postimg.cc/J0XPVtZP/a51.png"width="600">
+        <figcaption>Figura 1: Armado de circuito en Thinkercad</figcaption>
+        </figure>
+</div>
+<div class="contenedor-imagenes">
+        <figure>
+            <img src="https://i.postimg.cc/VvMQGf6c/a54.png"width="600">
+        <figcaption>Figura 2: Inicio de sesión correcto enciende led verde</figcaption>
+        </figure>
+</div>
+<div class="contenedor-imagenes">
+        <figure>
+            <img src="https://i.postimg.cc/QNzR2TGk/a53.png"width="600">
+        <figcaption>Figura 3: Bienvenida del usuario</figcaption>
+        </figure>
+</div>
+<div class="contenedor-imagenes">
+        <figure>
+            <img src="https://i.postimg.cc/Wz4T5LZN/a52.png"width="600">
+        <figcaption>Figura 4: Ingreso incorrecto enciende buzzer</figcaption>
+        </figure>
+</div>
+    <h2><strong> Esquemas de conexión en Tinkercad</strong><a href="https://www.tinkercad.com/things/4DJuiXQTKrc-actividad-5/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard">Dar click aquí</a> </h2>
+  <h3>Esquemático de conexiones de la práctica</h3>
+    <img src="https://i.postimg.cc/Wp5yMJ1c/A5.png"width="1000">
+
+
+    <h2>Simulación de Thinkercad</h2>
+  
+    <iframe width="725" height="453" src="https://www.tinkercad.com/embed/4DJuiXQTKrc?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+</body>
+</html>
